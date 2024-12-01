@@ -97,5 +97,17 @@ class Pedido(models.Model):
     def __str__(self):
         return str(self.fecha)
     
-
+class PedidoOferta(models.Model):
+    Pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
+    Oferta = models.ForeignKey(Oferta, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return str(self.Pedido.fecha)
+    
+class PedidoProducto(models.Model):
+    Pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
+    Producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return str(self.Pedido.fecha)
     
