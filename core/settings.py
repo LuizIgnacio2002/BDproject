@@ -249,7 +249,7 @@ JAZZMIN_SETTINGS = {
         "app.Trabajador": "fas fa-users",
         "app.Cajero": "fas fa-cash-register",
         "app.Mozo": "fas fa-users",
-        "app.Gestor_de_invetario": "fas fa-users",
+        "app.Gestor_de_invetario": "fas fa-shelves",
         "app.Categoria": "fas fa-layer-group",
         "app.Producto": "fas fa-users",
         "app.mesa": "fas fa-users",
@@ -258,7 +258,7 @@ JAZZMIN_SETTINGS = {
         "app.OfertaProducto": "fas fa-users",
         "app.PedidoOferta": "fas fa-users",
         "app.PedidoProducto": "fas fa-users",
-        "app.Factura": "fas fa-users",
+        "app.Factura": "fas fa-money-bill",
         "app.metodo_pago": "fas fa-users",
         "app.Pago": "fas fa-users",
         
