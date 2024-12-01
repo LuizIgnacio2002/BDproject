@@ -111,3 +111,37 @@ class PedidoProducto(models.Model):
     def __str__(self):
         return str(self.Pedido.fecha)
     
+class Mesa(models.Model):
+    codigo = models.CharField(max_length=100)
+    capacidad = models.IntegerField()
+    mozo = models.ForeignKey(Mozo, on_delete=models.CASCADE)
+    estado = models.BooleanField()
+    
+    def __str__(self):
+        return str(self.codigo)
+    
+class Factura(models.Model):
+    Pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
+    monto_final = models.DecimalField(max_digits=5, decimal_places=2)
+    estado = models.BooleanField()
+    descuento = models.DecimalField(max_digits=5, decimal_places=2)
+    Trabajador = models.ForeignKey(Trabajador, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return str(self.fecha)
+    
+class metodo_pago(models.Model):
+    nombre = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.nombre
+    
+class Pago(models.Model):
+    Factura = models.ForeignKey(Factura, on_delete=models.CASCADE)
+    metodo_pago = models.ForeignKey(metodo_pago, on_delete=models.CASCADE)
+    fecha = models.DateField()
+    monto_total = models.DecimalField(max_digits=5, decimal_places=2)
+    monto_devuelto = models.DecimalField(max_digits=5, decimal_places=2)
+    
+    def __str__(self):
+        return str(self.Factura.fecha)
