@@ -34,13 +34,6 @@ class Cajero(models.Model):
     def __str__(self):
         return self.Trabajador.user.nombre
     
-class Cliente(models.Model):
-    Trabajador = models.OneToOneField(Trabajador, on_delete=models.CASCADE)
-    rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return self.Trabajador.user.nombre
-    
 class Mozo(models.Model):
     Trabajador = models.OneToOneField(Trabajador, on_delete=models.CASCADE)
     rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
@@ -72,6 +65,26 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombre
     
+class Mesa(models.Model):
+    codigo = models.CharField(max_length=100)
+    capacidad = models.IntegerField()
+    mozo = models.ForeignKey(Mozo, on_delete=models.CASCADE)
+    estado = models.BooleanField()
+    
+    def __str__(self):
+        return str(self.codigo)
+    
+class Pedido(models.Model):
+    fecha = models.DateField()
+    monto = models.DecimalField(max_digits=5, decimal_places=2)
+    mesa = models.ForeignKey(Mesa, on_delete=models.CASCADE)
+    estado = models.BooleanField()
+    
+    
+    
+    def __str__(self):
+        return str(self.fecha)
+    
 class Oferta(models.Model):
     nombre = models.CharField(max_length=100)
     precio = models.DecimalField(max_digits=5, decimal_places=2)
@@ -89,14 +102,6 @@ class OfertaProducto(models.Model):
     def __str__(self):
         return self.Oferta.nombre
     
-class Pedido(models.Model):
-    fecha = models.DateField()
-    total = models.DecimalField(max_digits=5, decimal_places=2)
-    Cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return str(self.fecha)
-    
 class PedidoOferta(models.Model):
     Pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
     Oferta = models.ForeignKey(Oferta, on_delete=models.CASCADE)
@@ -111,14 +116,7 @@ class PedidoProducto(models.Model):
     def __str__(self):
         return str(self.Pedido.fecha)
     
-class Mesa(models.Model):
-    codigo = models.CharField(max_length=100)
-    capacidad = models.IntegerField()
-    mozo = models.ForeignKey(Mozo, on_delete=models.CASCADE)
-    estado = models.BooleanField()
-    
-    def __str__(self):
-        return str(self.codigo)
+
     
 class Factura(models.Model):
     Pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
@@ -128,7 +126,7 @@ class Factura(models.Model):
     Trabajador = models.ForeignKey(Trabajador, on_delete=models.CASCADE)
     
     def __str__(self):
-        return str(self.fecha)
+        return str(self.descuento)
     
 class metodo_pago(models.Model):
     nombre = models.CharField(max_length=100)

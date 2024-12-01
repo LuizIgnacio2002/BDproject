@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Usuario, Rol, Trabajador, Cajero, Cliente, Mozo, Gestor_de_invetario, Categoria, Producto, Oferta, OfertaProducto, Pedido, PedidoOferta, PedidoProducto, Mesa, Factura, metodo_pago, Pago
+from .models import Usuario, Rol, Trabajador, Cajero, Mozo, Gestor_de_invetario, Categoria, Producto, Oferta, OfertaProducto, Pedido, PedidoOferta, PedidoProducto, Mesa, Factura, metodo_pago, Pago
 
 # Register your models here.
 
@@ -19,11 +19,6 @@ class TrabajadorAdmin(admin.ModelAdmin):
     list_filter = ('user', 'rol')
     
 class CajeroAdmin(admin.ModelAdmin):
-    list_display = ('Trabajador', 'rol')
-    search_fields = ('Trabajador', 'rol')
-    list_filter = ('Trabajador', 'rol')
-    
-class ClienteAdmin(admin.ModelAdmin):
     list_display = ('Trabajador', 'rol')
     search_fields = ('Trabajador', 'rol')
     list_filter = ('Trabajador', 'rol')
@@ -57,8 +52,8 @@ class OfertaProductoAdmin(admin.ModelAdmin):
     search_fields = ('Oferta', 'Producto')
     
 class PedidoAdmin(admin.ModelAdmin):
-    list_display = ('total',)
-    search_fields = ('total',)
+    list_display = ('monto',)
+    search_fields = ('monto',)
     
 class PedidoOfertaAdmin(admin.ModelAdmin):
     list_display = ('Pedido', 'Oferta')
@@ -86,7 +81,6 @@ admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Rol, RolAdmin)
 admin.site.register(Trabajador, TrabajadorAdmin)
 admin.site.register(Cajero, CajeroAdmin)
-admin.site.register(Cliente, ClienteAdmin)
 admin.site.register(Mozo, MozoAdmin)
 admin.site.register(Gestor_de_invetario, Gestor_de_invetarioAdmin)
 admin.site.register(Categoria, CategoriaAdmin)
